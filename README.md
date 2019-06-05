@@ -1,6 +1,7 @@
 # myProject
 
 > nuxt framework
+> nuxt.js + element-ui + postcss
 
 ## Build Setup
 
