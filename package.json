@@ -1,0 +1,25 @@
+{
+  "name": "myProject",
+  "version": "1.0.0",
+  "description": "nuxt framework",
+  "author": "jian652485051@163.com",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.4.1",
+    "cross-env": "^5.2.0",
+    "element-ui": "^2.4.11",
+    "js-md5": "^0.7.3",
+    "nuxt": "^2.4.0",
+    "postcss-assets": "^5.0.0",
+    "postcss-cssnext": "^3.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}

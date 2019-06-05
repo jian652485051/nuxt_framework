@@ -1,0 +1,23 @@
+:root {
+    --bodybg-color:#f5f5f5;
+    --def-text-color:#666666;
+    --def-color:#0277d0;
+    --def-color-opc60:rgba(2,119,208,.6);
+    --def-color-opc80:rgba(2,119,208,.8);
+    --def-font-size:14px;
+    --def-font:"Microsoft Yahei","Helvetica Neue",Helvetica,Arial,sans-serif;
+    --wrapper:1180px;
+
+    --fz14:14px;
+    --fz16:16px;
+    --white:#ffffff;
+    --gray:#666666;
+
+    --orange:#fc6420;
+    --ddd:#dddddd;
+    --e8: #e8e8e8;
+    --red:#ff6d6d;
+    --de5b1f: #de5b1f;
+    --white60:rgba(255,255,255,.6);
+}
+
