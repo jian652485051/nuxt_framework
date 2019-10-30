@@ -14,6 +14,5 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-@import 'root.css';
 .pageFooter { width:100%; height:100px; position:absolute; left:0; bottom:0; overflow:hidden; background:#121820; color:#ffffff;}
 </style>

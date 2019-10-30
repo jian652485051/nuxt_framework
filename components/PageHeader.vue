@@ -58,28 +58,30 @@ export default {
     },
     methods: {
         navActive(e){
-            let path = this.$route.matched[0].path || '/'
-            if(e.path == path){
-                return true
-            }
+          let path = '/'
+          if(this.$route.matched[0] && this.$route.matched[0].path){
+            path = this.$route.matched[0].path
+          }
+          if(e.path == path){
+            return true
+          }
         }
     }
 }
 </script>
 
 <style lang="postcss" scoped>
-@import 'root.css';
 .pageHeader { height:100px; background-color:#ddd;}
 .pageNav {
-    & li {
+    li {
          float:left;
     }
-    & a {
+    a {
         display:block;
         font-size:16px;
         padding:10px;
     }
-    & .active a {
+    .active a {
         color:var(--def-color);
     }
 }

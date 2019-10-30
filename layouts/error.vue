@@ -23,24 +23,23 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-@import 'root.css';
 .error {
   text-align: center;
   padding:70px 0;
   color:var(--gray);
-  & .el-icon-warning {
-      font-size:50px;
-      margin-bottom:10px;
+  .el-icon-warning {
+    font-size:50px;
+    margin-bottom:10px;
   }
-  & .error-title {
+  .error-title {
     font-size: 50px;
     font-weight: bold;
   }
-  & .error-info {
+  .error-info {
     font-weight: normal;
     margin-bottom:20px;
   }
-  & .error-button {
+  .error-button {
     margin: 25px;
   }
 }

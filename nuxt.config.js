@@ -1,87 +1,118 @@
-import pkg from './package'
-
 export default {
-    mode: 'universal',
+  mode: 'universal',
 
-    server: {
-        port: 8000, // default: 3000
-        host: '0.0.0.0', // default: localhost,
+  server: {
+    port: 3000, // default: 3000
+    host: 'localhost', // default: localhost,
+  },
+
+  /*
+  ** Headers of the page
+  */
+  head: {
+    title: process.env.npm_package_name,
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'renderer', content: 'webkit'},
+      { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge,chrome=1'},
+      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+    ]
+  },
+
+  /*
+  ** Customize the progress-bar color
+  */
+  loading: { color: '#ff6600' },
+
+  /*
+  ** Global CSS
+  */
+  css: [
+    'element-ui/lib/theme-chalk/index.css'
+  ],
+
+  /*
+  ** Plugins to load before mounting the App
+  */
+  plugins: [
+    '@/plugins/element-ui',
+    '@/plugins/axios',
+    {src: '@/plugins/common',ssr: false},
+    '@/plugins/components',
+    '@/plugins/filters',
+  ],
+  /*
+  ** Nuxt.js dev-modules
+  */
+  buildModules: [
+  ],
+  /*
+  ** Nuxt.js modules
+  */
+  modules: [
+    '@nuxtjs/axios'
+  ],
+  axios: {
+    retry: {
+      retries: 3
     },
+    debug: false
+  },
 
-    /*
-    ** Headers of the page
-    */
-    head: {
-        title: pkg.name,
-        meta: [
-            { charset: 'utf-8' },
-            { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-            { name: 'renderer', content: 'webkit'},
-            { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge,chrome=1'},
-            { hid: 'description', name: 'description', content: pkg.description }
-        ]
-    },
-
-    /*
-    ** Customize the progress-bar color
-    */
-    loading: { color: '#ff6600' },
-
-    /*
-    ** Global CSS
-    */
-    css: [
-        'element-ui/lib/theme-chalk/index.css'
-    ],
-
-    /*
-    ** Plugins to load before mounting the App
-    */
-    plugins: [
-        '@/plugins/element-ui',
-        '@/plugins/axios',
-        {src: '@/plugins/common',ssr: false},
-        '@/plugins/components',
-        '@/plugins/filters',
-    ],
-
-    /*
-    ** Nuxt.js modules
-    */
-    modules: [
-        '@nuxtjs/axios'
-    ],
-    axios: {
-        retry: {
-            retries: 3
+  /*
+  ** Build configuration
+  */
+  build: {
+    transpile: [/^element-ui/],
+    postcss:{
+      plugins:{
+        'postcss-url':false,
+        'postcss-nested': {},
+        'cssnano': { preset: 'default' },
+        'postcss-assets':{
+          relative:true,
+          loadPaths: ['assets/img']
+        }
+      },
+      preset:{
+        stage:2,
+        autoprefixer: {
+          grid: false,
+          overrideBrowserslist: [
+            'last 2 versions'
+          ]
         },
-        debug: false
+        importFrom:['assets/css/root.css']
+      }
     },
-
     /*
-    ** Build configuration
+    ** You can extend webpack config here
     */
-    build: {
-        transpile: [/^element-ui/],
-        postcss: [
-            require('postcss-import')({
-                path: ['assets/css']
-            }),
-            require('postcss-url')(),
-            require('postcss-cssnext')(),
-            require('postcss-assets')({
-                relative: true,
-                loadPaths: ['assets/img']
-            })
-        ],
-        /*
-        ** You can extend webpack config here
-        */
-        extend(config, ctx) {}
-    },
-    router: {
-        linkActiveClass: '',
-        linkExactActiveClass: 'active',
-        //middleware:'headers'
+    extend(config, { isDev }) {
+      if (isDev && process.client) {
+        config.module.rules.push({
+          enforce: 'pre',
+          test: /\.(js|vue)$/,
+          loader: 'eslint-loader',
+          exclude: /(node_modules)/
+        })
+        // config.module.rules.push({
+        //   test: /\.postcss$/,
+        //   use: [
+        //     'vue-style-loader',
+        //     'css-loader',
+        //     {
+        //       loader: 'postcss-loader'
+        //     }
+        //   ]
+        // })
+      }
     }
+  },
+  router: {
+    linkActiveClass: '',
+    linkExactActiveClass: 'active',
+    //middleware:'headers'
+  }
 }

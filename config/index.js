@@ -6,15 +6,4 @@ const URLHASH = {
     master: 'vresmp.soocedu.com'                //线上接口
 };
 
-const api = URLHASH.mock;
-
-export default {
-    production: {
-        host:'',
-        domain:'http://'+api
-    },
-    app: {
-        host:api,
-        routerBaseApi:''
-    }
-}
+export const api = 'http://'+URLHASH.dev;

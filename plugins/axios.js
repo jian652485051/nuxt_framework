@@ -5,7 +5,7 @@ let $this = Vue.prototype;
 export default function ({ $axios, redirect,store }) {
     $axios.onRequest(config => {
         config.headers['Content-Type'] = 'application/json';
-        config.headers['school'] = store.state.domain;
+        //config.headers['school'] = store.state.domain;
         if(store.state.token){
             config.headers['Authorization'] = store.state.token;
         }
@@ -42,20 +42,18 @@ export default function ({ $axios, redirect,store }) {
             return Promise.reject(response);
         }
         return response;
-    },error =>{
-        console.log('wasd'+error);
     })
 
     $axios.onError(error => {
         console.log(error);
-        const code = parseInt(error.response && error.response.status)
-        if (code === 400) {
-            //redirect('/400')
-        }
-        let statusCode = error.data.statusCode;
-        $this.$message({
-            message: statusCode || '系统发生错误',
-            type: 'error'
-        });
+        // const code = parseInt(error.response && error.response.status)
+        // if (code === 400) {
+        //     //redirect('/400')
+        // }
+        // let statusCode = error.data.statusCode;
+        // $this.$message({
+        //     message: statusCode || '系统发生错误',
+        //     type: 'error'
+        // });
     })
 }

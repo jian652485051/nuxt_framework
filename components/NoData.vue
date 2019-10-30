@@ -11,7 +11,7 @@
     font-size:20px;
     padding:50px 0 30px;
     color:#666666;
-    & i {
+    i {
         font-size:90px;
         color:#dddddd;
         margin-bottom:10px;

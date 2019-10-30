@@ -94,26 +94,24 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-@import 'root.css';
 .sooc_box.el-dialog {   }
 .sooc_box {
-    & > div {  }
-    & /deep/ .el-dialog__header {  padding: 20px 30px 0; border: 0 !important; }
-    & .submit-button { width: 100%; margin-top: 10px; }
-    & .dialog-title { 
-        & label { font-size: 18px; color: #0f6ab4; }
-        & span { font-size: 12px; color: #b0c6e0; padding-left: 8px; }
+    >>> .el-dialog__header {  padding: 20px 30px 0; border: 0 !important; }
+    .submit-button { width: 100%; margin-top: 10px; }
+    .dialog-title { 
+        label { font-size: 18px; color: #0f6ab4; }
+        span { font-size: 12px; color: #b0c6e0; padding-left: 8px; }
     }
-    & /deep/ .el-dialog__body {
+    >>> .el-dialog__body {
         padding: 25px 30px 10px;
         box-shadow: 0 10px 10px -5px #3a5f7a;
     }
-    & /deep/ .el-input {
-        & input { background: #e9f0f5; border: 0; padding-left: 45px; }
-        & .el-input__prefix { left: 15px; }
-        & i:after { width: 18px; height: 18px; }
-        & .account:after { background: resolve('m01.png')no-repeat; }
-        & .pwd:after { background: resolve('m02.png')no-repeat; }
+    >>> .el-input {
+        input { background: #e9f0f5; border: 0; padding-left: 45px; }
+        .el-input__prefix { left: 15px; }
+        i:after { width: 18px; height: 18px; }
+        .account:after { background: resolve('m01.png')no-repeat; }
+        .pwd:after { background: resolve('m02.png')no-repeat; }
     }
 }
 </style>
