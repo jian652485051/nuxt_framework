@@ -64,6 +64,7 @@ export default {
   ** Build configuration
   */
   build: {
+    publicPath:'',
     transpile: [/^element-ui/],
     postcss:{
       plugins:{
