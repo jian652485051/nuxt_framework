@@ -1,9 +1,9 @@
 export default {
-  mode: 'universal',
+  mode: 'spa',  //universal or spa
 
   server: {
     port: 3000, // default: 3000
-    host: 'localhost', // default: localhost,
+    host: '0.0.0.0', // default: localhost,
   },
 
   /*
@@ -13,7 +13,7 @@ export default {
     title: process.env.npm_package_name,
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'viewport', content: 'width=device-width,initial-scale=1,minimum-scale=1,user-scalable=no' },
       { name: 'renderer', content: 'webkit'},
       { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge,chrome=1'},
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
@@ -39,6 +39,7 @@ export default {
     '@/plugins/element-ui',
     '@/plugins/axios',
     {src: '@/plugins/common',ssr: false},
+    {src: '@/plugins/responsive',ssr: false},
     '@/plugins/components',
     '@/plugins/filters',
   ],

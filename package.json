@@ -16,7 +16,8 @@
     "js-md5": "^0.7.3",
     "nuxt": "^2.10.1",
     "postcss-assets": "^5.0.0",
-    "postcss-nested": "^4.1.2"
+    "postcss-nested": "^4.1.2",
+    "vue-responsive-component": "^1.0.5"
   },
   "devDependencies": {
     "nodemon": "^1.18.9"
