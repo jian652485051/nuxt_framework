@@ -1,4 +1,4 @@
-# myProject
+# NUXT_FRAMEWORK
 
 > nuxt.js + element-ui + postcss
 
