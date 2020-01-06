@@ -25,10 +25,6 @@ export default {
     data(){
         return {
             dialogVisible:false,
-            queryParam:{
-                pagesize:5,
-                page:1
-            },
             loading: false,
             queryParam: {
                 code: '',
