@@ -6,10 +6,10 @@
     </span>
     <el-form ref="loginForm" :model="queryParam" :rules="rules" class="login-form">
         <el-form-item prop="code">
-            <el-input placeholder="输入用户名" v-model="queryParam.code" @keypress.enter.native="keypress" :autofocus="true"><i slot="prefix" class="el-input__icon account"></i></el-input>
+            <el-input placeholder="输入用户名" v-model="queryParam.code" @keypress.enter.native="login()" :autofocus="true"><i slot="prefix" class="el-input__icon account"></i></el-input>
         </el-form-item>
         <el-form-item prop="password">
-            <el-input placeholder="输入密码" type="password" v-model="queryParam.password" @keypress.enter.native="keypress"><i slot="prefix" class="el-input__icon pwd"></i></el-input>
+            <el-input placeholder="输入密码" type="password" v-model="queryParam.password" @keypress.enter.native="login()"><i slot="prefix" class="el-input__icon pwd"></i></el-input>
         </el-form-item>
         <el-form-item class="submit-item">
              <el-button type="primary" class="submit-button" @click="login" :loading="loading" round>登录</el-button>
@@ -73,13 +73,7 @@ export default {
                 }
             });
         
-        },
-        // 回车
-        keypress() {
-            if (this.queryParam.code != '' && this.queryParam.password != '') {
-                this.login();
-            }
-        },
+        }
     },
     mounted() {
         this.common.on("unlogin",()=>{
