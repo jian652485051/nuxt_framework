@@ -10,16 +10,18 @@ export default {
 
         //存储cookie中的token
         let cookieToJson = cookie => {
-            let cookieArr = cookie.split(";");
-            let obj = {} 
-            cookieArr.forEach((i) => {
-                let arr = i.split("=");
-                obj[arr[0]] =arr[1];
-            });
-            return obj
+          let cookieArr = cookie.split(";");
+          let obj = {}
+          cookieArr.forEach((i) => {
+            let arr = i.split("=");
+            obj[arr[0]] =arr[1];
+          });
+          return obj
         }
-        if (req.headers.cookie) {
-            let cookies = req.headers.cookie
+
+        let cookies = req.headers.cookie;
+        if (cookies) {
+            cookies = cookies.replace(/\s*/g,"");
             let token = cookieToJson(cookies).token || ''
             commit('SET_TOKEN', token)
         }
