@@ -1,5 +1,5 @@
 export default {
-  mode: 'universal',  //universal or spa
+  ssr:true,           //是否服务端渲染,false为单页面应用
 
   server: {
     port: 3000, // default: 3000
@@ -66,7 +66,7 @@ export default {
   */
   build: {
     publicPath:'',
-    transpile: [/^element-ui/],
+    transpile: [/^element-ui/,'vue-responsive-component'],
     postcss:{
       plugins:{
         'postcss-url':false,
