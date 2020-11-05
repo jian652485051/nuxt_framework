@@ -35,6 +35,13 @@ export default {
     head(){
         return {
             title:'新闻列表 -' + this.common_data.title,
+            script: [
+              { src:'/js/jquery.min.js', type: 'text/javascript', charset: 'utf-8', 
+                async: true,
+                //body: true,
+                onload:"var event = new Event('jsload');document.dispatchEvent(event);"
+              },
+            ]
         }
     },
     computed: {
@@ -47,9 +54,15 @@ export default {
         pageChange(p){
             //console.log(p);
             this.$router.push({name:'news-p',params:{p:p}});
-        }
+        },
+        jsReady() {
+          //第三方js加载完成后
+          document.removeEventListener("jsload", this.jsReady);
+          $('body').addClass('ok');
+        },
     },
     mounted() {
+        document.addEventListener("jsload", this.jsReady, { passive: true });
         //console.log(this.news_list)
     },
 }
