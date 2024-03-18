@@ -1,5 +1,13 @@
+import { api,siteTitle } from './config'
+const webpack = require("webpack");
+const CompressionWebpackPlugin = require('compression-webpack-plugin')//这个插件可以看官网还是很好用的
+const productionGzipExtensions = ['js', 'css']//对什么文件进行压缩
+
+const Timestamp = new Date().getTime();
+const pkg  = require('./package');
+
 export default {
-  ssr:true,           //是否服务端渲染,false为单页面应用
+  ssr:false,           //是否服务端渲染,false为单页面应用
 
   server: {
     port: 3000, // default: 3000
@@ -10,7 +18,7 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: process.env.npm_package_name,
+    title: siteTitle,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width,initial-scale=1,minimum-scale=1,user-scalable=no' },
@@ -39,7 +47,6 @@ export default {
     '@/plugins/element-ui',
     '@/plugins/axios',
     {src: '@/plugins/common',ssr: false},
-    {src: '@/plugins/responsive',ssr: false},
     '@/plugins/components',
     '@/plugins/filters',
   ],
@@ -58,7 +65,8 @@ export default {
     retry: {
       retries: 3
     },
-    debug: false
+    debug: false,
+    baseURL:api
   },
 
   /*
@@ -66,7 +74,7 @@ export default {
   */
   build: {
     publicPath:'',
-    transpile: [/^element-ui/,'vue-responsive-component'],
+    transpile: [/^element-ui/],
     postcss:{
       plugins:{
         'postcss-url':false,
@@ -74,7 +82,7 @@ export default {
         'cssnano': { preset: 'default' },
         'postcss-assets':{
           relative:true,
-          loadPaths: ['assets/img']
+          loadPaths: ['assets/img','assets/font']
         }
       },
       preset:{
@@ -91,26 +99,24 @@ export default {
     /*
     ** You can extend webpack config here
     */
-    extend(config, { isDev }) {
-      if (isDev && process.client) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
-        // config.module.rules.push({
-        //   test: /\.postcss$/,
-        //   use: [
-        //     'vue-style-loader',
-        //     'css-loader',
-        //     {
-        //       loader: 'postcss-loader'
-        //     }
-        //   ]
-        // })
-      }
-    }
+    extend(config, ctx) {
+      //每次构建打包时给文件名加上时间戳，保证版本更新时与上版本文件名不一样
+      config.output.filename = `js/[name].${pkg.version}.js`;
+      config.output.chunkFilename = `js/[name].${pkg.version}.js`;
+    },
+    plugins: [
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),//该插件能够使得指定目录被忽略，从而使得打包变快，文件变小
+      new CompressionWebpackPlugin({
+        algorithm: 'gzip',//压缩算法
+        test: productionGzipExtensions,//处理所有匹配此 {RegExp} 的资源
+        threshold: 10240,//只处理比这个值大的资源。按字节计算
+        minRatio: 0.8//只有压缩率比这个值小的资源才会被处理
+      }),
+      new webpack.optimize.LimitChunkCountPlugin({
+        maxChunks: 5, //控制打包生成js的个数
+        minChunkSize: 100
+      })
+    ]
   },
   router: {
     linkActiveClass: '',

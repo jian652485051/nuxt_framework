@@ -15,8 +15,6 @@ export const state = () => ({
   user:{},
   download_url:admin_url+"/index.php/web/public/downfile?file_id=",
   upload_url:admin_url+"/index.php/web/file/upload",
-  news_list:[],
-  news_detail:{}
 })
 export const getters = v_getters
 export const mutations = v_mutations

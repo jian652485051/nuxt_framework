@@ -17,7 +17,7 @@ export default {
         let params = {
             id: route.params.id || ''
         }
-        await store.dispatch('NEW_DETAIL', params).catch((e) => {
+        await store.dispatch('public_detail', params).catch((e) => {
             error({ statusCode:e.data.status, message:e.data.statusCode })
         })
         return {

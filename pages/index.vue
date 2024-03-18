@@ -3,25 +3,6 @@
 
         <div class="wrap">
             主体内容
-            
-            <no-ssr>
-              <responsive min="-1" max="543">
-                <div>pagesize：xs</div>
-              </responsive>
-              <responsive min="544" max="767">
-                <div>pagesize：sm</div>
-              </responsive>
-              <responsive min="768" max="991">
-                <div>pagesize：md</div>
-              </responsive>
-              <responsive min="992" max="1199">
-                <div>pagesize：lg</div>
-              </responsive>
-              <responsive min="1200">
-                <div>pagesize：xl</div>
-              </responsive>
-            </no-ssr>
-            
         </div>
 
     </section>
@@ -37,12 +18,7 @@ export default {
         }
     },
     computed: {
-        ...mapState([
-            'common_data',
-            'userCheck',
-            'user',
-            'token'
-        ])
+        ...mapState(['common_data','user','token'])
     },
 }
 </script>

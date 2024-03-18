@@ -25,7 +25,7 @@ export default {
             p: route.params.p || 1,
             pagesize: 10
         }
-        await store.dispatch('NEW_LIST', params).catch((e) => {
+        await store.dispatch('public_article', params).catch((e) => {
             error({ statusCode:e.data.status, message:e.data.statusCode })
         })
         return {

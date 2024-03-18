@@ -10,11 +10,5 @@ export default {
     },
     SET_USER(state, data) {
         state.user = data
-    },
-    NEW_LIST(state, data){
-        state.news_list = data
-    },
-    NEW_DETAIL(state, data){
-        state.news_detail = data
     }
 }

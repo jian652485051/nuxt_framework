@@ -5,9 +5,11 @@ let $this = Vue.prototype;
 export default function ({ $axios, redirect,store }) {
     $axios.onRequest(config => {
         config.headers['Content-Type'] = 'application/json';
-        //config.headers['school'] = store.state.domain;
-        if(store.state.token){
-            config.headers['Authorization'] = store.state.token;
+        let token = $this.common.getCookie('token');
+        if(token){
+            config.headers['Authorization'] = "Bearer " + token;
+        }else{
+            config.headers['Authorization'] = "";
         }
         return config;
     }),

@@ -1,12 +1,10 @@
 import Vue from 'vue'
-import Responsive from 'vue-responsive-component';
 import nodata from '@/components/NoData.vue'
 import login from '@/components/login.vue'
 
 const components = { 
     nodata,
-    login,
-    Responsive
+    login
 }
 
 Object.keys(components).forEach(key => {
